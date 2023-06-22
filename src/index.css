@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background_gradient: linear-gradient(
+    142deg,
+    rgba(160, 230, 25, 1) 0%,
+    rgba(238, 130, 238, 0) 0%,
+    rgba(25, 230, 197, 1) 14%,
+    rgba(95, 25, 230, 1) 100%,
+    rgba(160, 230, 25, 1) 100%
+  );
+}
+
+.flex__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex__col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section__padding {
+  padding: 2rem 4rem;
+}
+
+.background__gradient {
+  background: var(--background_gradient);
+}
+
+.scroll-none::-webkit-scrollbar {
+  display: none;
+}
