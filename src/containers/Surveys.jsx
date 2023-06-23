@@ -37,6 +37,7 @@ const Surveys = () => {
         {surveys.map((survey) => (
           <SurveyCard
             key={survey._id}
+            _id={survey._id}
             title={survey.title}
             description={survey.description}
             username={survey.owner.username}

@@ -9,4 +9,5 @@ export const authConstants = {
 
 export const surveyConstants = {
   GET_ALL_SURVEYS: "GET_ALL_SURVEYS",
+  GET_ONE_SURVEY: "GET_ONE_SURVEY",
 };

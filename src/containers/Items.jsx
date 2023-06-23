@@ -1,12 +1,17 @@
 import React from "react";
 import { Item } from "../components";
 
-const Items = () => {
+const Items = ({ items }) => {
   return (
     <main className="grow w-full my-5">
-      <Item />
-      <Item />
-      <Item />
+      {items?.map((item) => (
+        <Item
+          key={item._id}
+          content={item.content}
+          percentage={item.percentage}
+          voters={item.voters}
+        />
+      ))}
     </main>
   );
 };
