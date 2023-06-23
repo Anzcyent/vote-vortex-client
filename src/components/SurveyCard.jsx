@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SurveyCard = ({ title, description }) => {
+const SurveyCard = ({ title, description, username }) => {
   const [toggleJoin, setToggleJoin] = useState(false);
   return (
     <article
@@ -13,7 +13,7 @@ const SurveyCard = ({ title, description }) => {
       </h3>
       <div className="grow p-3 text-base flex flex-col justify-between" style={{ background: "#f7f7f7" }}>
         <p className="sm:text-base text-sm">{description}</p>
-        <span className="text-sm text-blue">@User</span>
+        <span className="text-sm text-blue">@{username}</span>
       </div>
       {toggleJoin && (
         <button className="flex__center bg-green text-white font-bold h-[13%]">

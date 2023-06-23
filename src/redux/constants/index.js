@@ -6,3 +6,7 @@ export const appConstants = {
 export const authConstants = {
   AUTH: "AUTH",
 };
+
+export const surveyConstants = {
+  GET_ALL_SURVEYS: "GET_ALL_SURVEYS",
+};
