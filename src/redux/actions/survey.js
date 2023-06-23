@@ -1,4 +1,4 @@
-import { getData } from "../../utils/fetchData";
+import { getData, postData } from "../../utils/fetchData";
 import { surveyConstants, appConstants } from "../constants";
 
 export const getAllSurveys = () => async (dispatch) => {
@@ -41,6 +41,23 @@ export const getOneSurvey = (id) => async (dispatch) => {
     dispatch({
       type: appConstants.LOADING,
       payload: false,
+    });
+  } catch (err) {
+    throw new Error(err.response.data.message);
+  }
+};
+
+export const createSurvey = (data, token, navigate) => async (dispatch) => {
+  try {
+    const res = await postData("/api/survey/create", data, token);
+
+    dispatch(getAllSurveys());
+
+    navigate(`/survey/${res.data.survey._id}`);
+
+    dispatch({
+      type: surveyConstants.GET_ONE_SURVEY,
+      payload: res.data.survey,
     });
   } catch (err) {
     throw new Error(err.response.data.message);
