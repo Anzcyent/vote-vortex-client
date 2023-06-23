@@ -5,6 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/actions/auth";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -40,16 +41,16 @@ const Navbar = () => {
         <div className="hidden sm:flex justify-evenly items-center">
           <span
             className="text-sm text-white mx-2 cursor-pointer hover:opacity-80"
-            onClick={() => navigate("/profile/1")}
+            onClick={() => navigate(`/profile/${user._id}`)}
           >
-            Username
+            {user.username}
           </span>
-          <a
-            href="/create"
+          <Link
+            to="/create"
             className="text-sm mx-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105 text-white font-semibold"
           >
             Create
-          </a>
+          </Link>
           <FiLogOut
             color="#fff"
             className="cursor-pointer hover:opacity-80 active:scale-105 mx-2"
@@ -58,18 +59,18 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="hidden sm:flex justify-evenly items-center">
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="text-sm mx-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105 text-white font-semibold"
           >
             Login
-          </a>
-          <a
-            href="/register"
+          </Link>
+          <Link
+            to="/register"
             className="text-sm mx-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105 text-white font-semibold"
           >
             Register
-          </a>
+          </Link>
         </div>
       )}
 
@@ -95,16 +96,27 @@ const Navbar = () => {
           </div>
 
           <div className="flex__col-center">
-            <a href="/" className="text-white my-2">
+            <Link
+              to="/"
+              className="text-white my-2"
+              onClick={() => setToggleMenu(false)}
+            >
               Home
-            </a>
-            <span className="text-sm text-white my-2">Username</span>
-            <a
-              href="/create"
+            </Link>
+            <Link
+              to={`/profile/${user._id}`}
+              className="text-sm text-white my-2"
+              onClick={() => setToggleMenu(false)}
+            >
+              Username
+            </Link>
+            <Link
+              to="/create"
               className="text-sm my-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105"
+              onClick={() => setToggleMenu(false)}
             >
               Create
-            </a>
+            </Link>
             <FiLogOut
               color="#fff"
               className="cursor-pointer hover:opacity-80 active:scale-105 my-2"
