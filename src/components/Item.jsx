@@ -1,9 +1,18 @@
 import React from "react";
 
-const Item = ({content, percentage, voters}) => {
+const Item = ({ content, percentage, voters }) => {
+  const dynamicStyles = {
+    width: `${percentage}%`,
+  };
+
   return (
     <div className="border border-blue my-3 w-1/2 flex justify-between items-center pr-3 overflow-hidden">
-      <div className={`bg-${percentage === 0 ? "white" : "blue"} text-${percentage === 0 ? "black" : "white"} w-[${percentage}%] h-full p-2 slide-right`}>
+      <div
+        className={`bg-${percentage === 0 ? "white" : "blue"} text-${
+          percentage === 0 ? "black" : "white"
+        } h-full p-2 slide-right`}
+        style={dynamicStyles}
+      >
         <span className="font-medium sm:text-base text-xs">{content}</span>
       </div>
 
