@@ -5,11 +5,21 @@ import { getAllSurveys } from "../redux/actions/survey";
 
 const Surveys = () => {
   const { surveys } = useSelector((state) => state.surveyReducer);
+  const { isLoaded } = useSelector((state) => state.appReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllSurveys());
-  }, [surveys]);
+  }, []);
+
+  if (!isLoaded) {
+    return (
+      <section className="grow overflow-auto scroll-none font-poppins scale-up-center w-full flex__col-center">
+        <h3 className="font-bold text-green sm:text-2xl text-lg">Loading...</h3>
+      </section>
+    );
+  }
 
   if (surveys.length === 0) {
     return (
