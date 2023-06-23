@@ -42,6 +42,7 @@ const Register = () => {
             className="bg-blue border-0 outline-0 text-white p-2 placeholder:text-white sm:w-1/2 w-full my-3"
             placeholder="Username"
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -52,6 +53,7 @@ const Register = () => {
             className="bg-blue border-0 outline-0 text-white p-2 placeholder:text-white sm:w-1/2 w-full my-3"
             placeholder="Email"
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -62,6 +64,7 @@ const Register = () => {
             className="bg-blue border-0 outline-0 text-white p-2 placeholder:text-white sm:w-1/2 w-full my-3"
             placeholder="Password"
             onChange={handleChange}
+            required
           />
 
           <small className="text-xs mb-3 text-aqua font-semibold">
@@ -76,6 +79,7 @@ const Register = () => {
             className="bg-blue border-0 outline-0 text-white p-2 placeholder:text-white sm:w-1/2 w-full my-3"
             placeholder="Confirm Password"
             onChange={handleChange}
+            required
           />
 
           {data.password !== "" && data.password !== data.confirmPassword && (
