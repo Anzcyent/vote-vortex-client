@@ -11,6 +11,7 @@ import { Items } from "../containers";
 const SurveyDetails = () => {
   const { isLoaded, error } = useSelector((state) => state.appReducer);
   const { survey } = useSelector((state) => state.surveyReducer);
+  const { access_token, user } = useSelector((state) => state.authReducer);
 
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -64,12 +65,14 @@ const SurveyDetails = () => {
 
         <Items items={survey.items} />
 
-        <button
-          type="button"
-          className="my-5 bg-aqua text-white px-4 py-2 hover:opacity-80 active:scale-105 text-sm sm:text-base"
-        >
-          Vote
-        </button>
+        {access_token && (
+          <button
+            type="button"
+            className="my-5 bg-aqua text-white px-4 py-2 hover:opacity-80 active:scale-105 text-sm sm:text-base"
+          >
+            Vote
+          </button>
+        )}
       </div>
     </section>
   );

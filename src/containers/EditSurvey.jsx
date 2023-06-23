@@ -66,6 +66,16 @@ const EditSurvey = () => {
       );
   };
 
+  if (!access_token) {
+    return (
+      <section className="grow w-full flex__col-center font-poppins flip-horizontal-bottom">
+        <h3 className="text-red font-bold sm:text-2xl text-lg">
+          You have to login/register for this operation.
+        </h3>
+      </section>
+    );
+  }
+
   if (!isLoaded) {
     return (
       <section className="grow font-poppins scale-up-center w-full flex__col-center">
@@ -85,7 +95,11 @@ const EditSurvey = () => {
   }
 
   return (
-    <section className={`grow w-full font-poppins flip-horizontal-bottom ${!isLoaded && "cursor-pointer"}`}>
+    <section
+      className={`grow w-full font-poppins flip-horizontal-bottom ${
+        !isLoaded && "cursor-pointer"
+      }`}
+    >
       <form
         onSubmit={handleSubmit}
         className="container w-full section__padding flex flex-col"

@@ -43,6 +43,14 @@ const CreateSurvey = () => {
       dispatch(createSurvey({ ...data, items }, access_token, navigate));
   };
 
+  if (!access_token) {
+    return (
+      <section className="grow w-full flex__col-center font-poppins flip-horizontal-bottom">
+        <h3 className="text-red font-bold sm:text-2xl text-lg">You have to login/register for this operation.</h3>
+      </section>
+    );
+  }
+
   return (
     <section className="grow w-full font-poppins flip-horizontal-bottom">
       <form
