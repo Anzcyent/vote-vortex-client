@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { generateNewAccessToken } from "./redux/actions/auth";
@@ -12,6 +12,7 @@ import {
   Login,
   Register,
   Profile,
+  EditSurvey,
 } from "./containers";
 
 import { Routes, Route } from "react-router-dom";
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path="/" element={<Surveys />} />
         <Route exact path="/survey/:id" element={<SurveyDetails />} />
         <Route exact path="/create" element={<CreateSurvey />} />
+        <Route exact path="/survey/edit/:id" element={<EditSurvey />} />
         <Route exact path="/profile/:id" element={<Profile />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />

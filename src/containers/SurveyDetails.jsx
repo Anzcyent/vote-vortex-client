@@ -4,15 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { getOneSurvey } from "../redux/actions/survey";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 import { Items } from "../containers";
 
 const SurveyDetails = () => {
   const { isLoaded, error } = useSelector((state) => state.appReducer);
   const { survey } = useSelector((state) => state.surveyReducer);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getOneSurvey(id));
@@ -26,7 +28,7 @@ const SurveyDetails = () => {
     );
   }
 
-  if (error) {
+  if (!survey._id) {
     return (
       <section className="grow font-poppins scale-up-center w-full flex__col-center">
         <h3 className="font-bold text-red sm:text-2xl text-lg">
@@ -51,6 +53,7 @@ const SurveyDetails = () => {
             <AiFillEdit
               className="text-white bg-blue text-4xl p-2 cursor-pointer rounded hover:opacity-80 transition active:scale-105"
               title="Edit your article"
+              onClick={() => navigate(`/survey/edit/${survey._id}`)}
             />
           )}
         </header>

@@ -6,7 +6,7 @@ const Item = ({ content, percentage, voters }) => {
   };
 
   return (
-    <div className="border border-blue my-3 w-1/2 flex justify-between items-center pr-3 overflow-hidden">
+    <div className="border border-blue my-3 sm:w-1/2 w-full flex justify-between items-center pr-3 overflow-hidden">
       <div
         className={`bg-${percentage === 0 ? "white" : "blue"} text-${
           percentage === 0 ? "black" : "white"
