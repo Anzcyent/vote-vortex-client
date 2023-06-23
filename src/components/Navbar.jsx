@@ -3,11 +3,13 @@ import { FcSearch, FcSurvey } from "react-icons/fc";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/actions/auth";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { user, access_token } = useSelector((state) => state.authReducer);
 
@@ -51,6 +53,7 @@ const Navbar = () => {
           <FiLogOut
             color="#fff"
             className="cursor-pointer hover:opacity-80 active:scale-105 mx-2"
+            onClick={() => dispatch(logout())}
           />
         </div>
       ) : (
@@ -92,9 +95,12 @@ const Navbar = () => {
           </div>
 
           <div className="flex__col-center">
+            <a href="/" className="text-white my-2">
+              Home
+            </a>
             <span className="text-sm text-white my-2">Username</span>
             <a
-              href="#"
+              href="/create"
               className="text-sm my-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105"
             >
               Create
@@ -102,6 +108,7 @@ const Navbar = () => {
             <FiLogOut
               color="#fff"
               className="cursor-pointer hover:opacity-80 active:scale-105 my-2"
+              onClick={() => dispatch(logout())}
             />
           </div>
         </div>
