@@ -121,3 +121,26 @@ export const selectItem = (item_id) => (dispatch) => {
     payload: item_id,
   });
 };
+
+export const searchSurvey = (title) => async (dispatch) => {
+  try {
+    dispatch({
+      type: appConstants.LOADING,
+      payload: true,
+    });
+
+    const res = await getData(`/api/survey/search?title=${title}`);
+
+    dispatch({
+      type: surveyConstants.GET_ALL_SURVEYS,
+      payload: res.data.surveys,
+    });
+
+    dispatch({
+      type: appConstants.LOADING,
+      payload: false,
+    });
+  } catch (err) {
+    throw new Error(err.response.data.message);
+  }
+};

@@ -6,13 +6,21 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/actions/auth";
 import { Link } from "react-router-dom";
+import { searchSurvey } from "../redux/actions/survey";
 
 const Navbar = () => {
+  const [responsiveSearchInput, setResponsiveSearchInput] = useState("");
   const [toggleMenu, setToggleMenu] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, access_token } = useSelector((state) => state.authReducer);
+
+  const handleResponsiveSearch = () => {
+    setToggleMenu(false);
+
+    dispatch(searchSurvey(responsiveSearchInput));
+  };
 
   return (
     <nav className="w-full background__gradient flex justify-evenly items-center font-poppins">
@@ -33,6 +41,7 @@ const Navbar = () => {
           type="text"
           placeholder="Search a title"
           className="outline-0 border-0 placeholder:text-xs text-sm"
+          onChange={(e) => dispatch(searchSurvey(e.target.value))}
         />
         <FcSearch />
       </div>
@@ -91,8 +100,9 @@ const Navbar = () => {
               type="text"
               placeholder="Search a title"
               className="outline-0 border-0 placeholder:text-xs text-sm"
+              onChange={(e) => setResponsiveSearchInput(e.target.value)}
             />
-            <FcSearch />
+            <FcSearch onClick={handleResponsiveSearch} />
           </div>
 
           <div className="flex__col-center">
