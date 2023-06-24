@@ -1,4 +1,4 @@
-import { getData, postData, putData } from "../../utils/fetchData";
+import { deleteData, getData, postData, putData } from "../../utils/fetchData";
 import { surveyConstants, appConstants, authConstants } from "../constants";
 
 export const getAllSurveys = () => async (dispatch) => {
@@ -161,6 +161,26 @@ export const searchSurvey = (title) => async (dispatch) => {
       payload: false,
     });
   } catch (err) {
+    throw new Error(err.response.data.message);
+  }
+};
+
+export const deleteSurvey = (id, navigate, token) => async (dispatch) => {
+  try {
+    dispatch({ type: appConstants.LOADING, payload: true });
+
+    const res = await deleteData(`/api/survey/${id}`, token);
+
+    navigate("/");
+
+    dispatch(getAllSurveys());
+
+    dispatch({ type: appConstants.LOADING, payload: false });
+  } catch (err) {
+    dispatch({
+      type: appConstants.ERROR,
+      payload: err.response.data.message,
+    });
     throw new Error(err.response.data.message);
   }
 };

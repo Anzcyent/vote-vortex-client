@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { getOneSurvey, vote } from "../redux/actions/survey";
+import { getOneSurvey, vote, deleteSurvey } from "../redux/actions/survey";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import { Items } from "../containers";
 
@@ -66,20 +67,31 @@ const SurveyDetails = () => {
             <small className="text-xs text-aqua">
               {moment(survey.createdAt).fromNow()}
             </small>
-            <small className="text-xs font-bold text-green my-1 cursor-pointer hover:opacity-60" onClick={() => navigate(`/profile/${survey.owner._id}`)}>
+            <small
+              className="text-xs font-bold text-green my-1 cursor-pointer hover:opacity-60"
+              onClick={() => navigate(`/profile/${survey.owner._id}`)}
+            >
               by {survey.owner.username}
             </small>
           </div>
 
-          {survey?.voters?.length === 0 &&
-            access_token &&
-            survey?.owner?._id === user?._id && (
-              <AiFillEdit
-                className="text-white bg-blue text-4xl p-2 cursor-pointer rounded hover:opacity-80 transition active:scale-105"
-                title="You can edit your article if there's no any voter."
-                onClick={() => navigate(`/survey/edit/${survey._id}`)}
+          {access_token && survey?.owner?._id === user?._id && (
+            <div className="flex__center">
+              {survey?.voters?.length === 0 && (
+                <AiFillEdit
+                  className="text-white bg-blue text-4xl p-2 cursor-pointer rounded hover:opacity-80 transition active:scale-105"
+                  title="You can edit your article if there's no any voter."
+                  onClick={() => navigate(`/survey/edit/${survey._id}`)}
+                />
+              )}
+              <BsFillTrashFill
+                onClick={() =>
+                  dispatch(deleteSurvey(id, navigate, access_token))
+                }
+                className="bg-red text-white text-4xl p-2 mx-2 cursor-pointer rounded hover:opacity-80 transition active:scale-105"
               />
-            )}
+            </div>
+          )}
         </header>
 
         <p className="my-5 text-sm sm:text-base leading-5">

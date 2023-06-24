@@ -31,3 +31,12 @@ export const putData = async (url, data, token) => {
 
   return res;
 };
+
+export const deleteData = async (url, token) => {
+  const res = await axios.delete(urlStart(url), {
+    headers: { Authorization: `Bearer:${token}` },
+    withCredentials: true,
+  });
+
+  return res;
+};
