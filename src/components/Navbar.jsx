@@ -105,34 +105,53 @@ const Navbar = () => {
             <FcSearch onClick={handleResponsiveSearch} />
           </div>
 
-          <div className="flex__col-center">
-            <Link
-              to="/"
-              className="text-white my-2"
-              onClick={() => setToggleMenu(false)}
-            >
-              Home
-            </Link>
-            <Link
-              to={`/profile/${user._id}`}
-              className="text-sm text-white my-2"
-              onClick={() => setToggleMenu(false)}
-            >
-              Username
-            </Link>
-            <Link
-              to="/create"
-              className="text-sm my-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105"
-              onClick={() => setToggleMenu(false)}
-            >
-              Create
-            </Link>
-            <FiLogOut
-              color="#fff"
-              className="cursor-pointer hover:opacity-80 active:scale-105 my-2"
-              onClick={() => dispatch(logout(navigate))}
-            />
-          </div>
+          {access_token ? (
+            <div className="flex__col-center">
+              <Link
+                to="/"
+                className="text-white my-2"
+                onClick={() => setToggleMenu(false)}
+              >
+                Home
+              </Link>
+              <Link
+                to={`/profile/${user._id}`}
+                className="text-sm text-white my-2"
+                onClick={() => setToggleMenu(false)}
+              >
+                {user.username}
+              </Link>
+              <Link
+                to="/create"
+                className="text-sm my-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105"
+                onClick={() => setToggleMenu(false)}
+              >
+                Create
+              </Link>
+              <FiLogOut
+                color="#fff"
+                className="cursor-pointer hover:opacity-80 active:scale-105 my-2"
+                onClick={() => dispatch(logout(navigate))}
+              />
+            </div>
+          ) : (
+            <div className="flex flex-col">
+              <Link
+                to="/login"
+                className="text-sm my-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105 text-white font-semibold text-center"
+                onClick={() => setToggleMenu(false)}
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="text-sm my-2 bg-aqua border-0 rounded-sm p-1 hover:opacity-80 active:scale-105 text-white font-semibold text-center"
+                onClick={() => setToggleMenu(false)}
+              >
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </nav>
