@@ -66,8 +66,10 @@ export const login = (data, navigate) => async (dispatch) => {
   }
 };
 
-export const logout = async () => {
+export const logout = async (navigate) => {
   const res = await getData("/api/auth/logout");
+
+  navigate("/");
 
   window.location.reload();
 };

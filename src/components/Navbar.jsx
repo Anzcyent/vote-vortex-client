@@ -63,7 +63,7 @@ const Navbar = () => {
           <FiLogOut
             color="#fff"
             className="cursor-pointer hover:opacity-80 active:scale-105 mx-2"
-            onClick={() => dispatch(logout())}
+            onClick={() => dispatch(logout(navigate))}
           />
         </div>
       ) : (
@@ -130,7 +130,7 @@ const Navbar = () => {
             <FiLogOut
               color="#fff"
               className="cursor-pointer hover:opacity-80 active:scale-105 my-2"
-              onClick={() => dispatch(logout())}
+              onClick={() => dispatch(logout(navigate))}
             />
           </div>
         </div>

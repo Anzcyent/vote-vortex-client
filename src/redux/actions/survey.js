@@ -20,6 +20,10 @@ export const getAllSurveys = () => async (dispatch) => {
       payload: false,
     });
   } catch (err) {
+    dispatch({
+      type: appConstants.ERROR,
+      payload: err.response.data.message,
+    });
     throw new Error(err.response.data.message);
   }
 };
@@ -47,6 +51,10 @@ export const getOneSurvey = (id) => async (dispatch) => {
       type: appConstants.LOADING,
       payload: false,
     });
+    dispatch({
+      type: appConstants.ERROR,
+      payload: err.response.data.message,
+    });
 
     throw new Error(err.response.data.message);
   }
@@ -65,6 +73,10 @@ export const createSurvey = (data, token, navigate) => async (dispatch) => {
       payload: res.data.survey,
     });
   } catch (err) {
+    dispatch({
+      type: appConstants.ERROR,
+      payload: err.response.data.message,
+    });
     throw new Error(err.response.data.message);
   }
 };
@@ -82,6 +94,10 @@ export const editSurvey = (id, data, token, navigate) => async (dispatch) => {
       payload: res.data.survey,
     });
   } catch (err) {
+    dispatch({
+      type: appConstants.ERROR,
+      payload: err.response.data.message,
+    });
     throw new Error(err.response.data.message);
   }
 };
@@ -111,6 +127,10 @@ export const vote = (survey_id, item_id, token) => async (dispatch) => {
       payload: false,
     });
   } catch (err) {
+    dispatch({
+      type: appConstants.ERROR,
+      payload: err.response.data.message,
+    });
     throw new Error(err.response.data.message);
   }
 };

@@ -5,6 +5,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "./redux/store.js";
+import "react-toastify/dist/ReactToastify.css";
 
 const store = configureStore();
 
