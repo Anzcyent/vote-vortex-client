@@ -118,7 +118,7 @@ export const vote = (survey_id, item_id, token) => async (dispatch) => {
     dispatch(getOneSurvey(res.data.survey._id));
 
     dispatch({
-      type: authConstants.AUTH,
+      type: authConstants.UPDATE,
       payload: res.data,
     });
 
