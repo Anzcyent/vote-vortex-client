@@ -13,6 +13,11 @@ export default function authReducer(state = initialState, action) {
         user: action.payload.user,
         access_token: action.payload.access_token,
       };
+    case authConstants.UPDATE:
+      return {
+        ...state,
+        user: action.payload.user,
+      };
 
     default:
       return state;

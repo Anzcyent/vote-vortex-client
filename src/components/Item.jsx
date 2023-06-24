@@ -1,22 +1,42 @@
 import React from "react";
+import { AiOutlineCheck } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { selectItem } from "../redux/actions/survey";
 
-const Item = ({ content, percentage, voters }) => {
-  const dynamicStyles = {
-    width: `${percentage}%`,
-  };
+const Item = ({ _id, content, voters, percentage }) => {
+  const dispatch = useDispatch();
+  const { selected_item, survey } = useSelector((state) => state.surveyReducer);
+  const { user } = useSelector((state) => state.authReducer);
+
+  const userVotedToThisSurvey = user.voted_surveys.includes(survey._id);
 
   return (
-    <div className="border border-blue my-3 sm:w-1/2 w-full flex justify-between items-center pr-3 overflow-hidden">
+    <div className="my-2 w-full flex">
       <div
-        className={`bg-${percentage === 0 ? "white" : "blue"} text-${
-          percentage === 0 ? "black" : "white"
-        } h-full p-2 slide-right`}
-        style={dynamicStyles}
+        className={`border border-blue p-2 sm:w-1/2 w-full ${
+          (selected_item === _id || userVotedToThisSurvey) &&
+          "bg-blue text-white flex items-center justify-between"
+        }`}
       >
-        <span className="font-medium sm:text-base text-xs">{content}</span>
+        <span>{content}</span>
+        {userVotedToThisSurvey && (
+          <span className="text-aqua font-bold">
+            {percentage + "%"}{" "}
+            <small className="text-white">({voters.length + " vote"})</small>{" "}
+          </span>
+        )}
       </div>
 
-      <span className="font-bold text-blue">{percentage}%</span>
+      {!userVotedToThisSurvey && (
+        <div
+          onClick={() => dispatch(selectItem(_id))}
+          className="border border-green w-10 mx-5 cursor-pointer hover:bg-green transition flex__center"
+        >
+          {selected_item === _id && (
+            <AiOutlineCheck className="text-black font-bold text-lg" />
+          )}
+        </div>
+      )}
     </div>
   );
 };

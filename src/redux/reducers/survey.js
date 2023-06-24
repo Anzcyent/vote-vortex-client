@@ -3,6 +3,7 @@ import { surveyConstants } from "../constants";
 const initialState = {
   surveys: [],
   survey: {},
+  selected_item: "",
 };
 
 export default function surveyReducer(state = initialState, action) {
@@ -16,6 +17,11 @@ export default function surveyReducer(state = initialState, action) {
       return {
         ...state,
         survey: action.payload,
+      };
+    case surveyConstants.SELECTED_ITEM:
+      return {
+        ...state,
+        selected_item: action.payload,
       };
 
     default:

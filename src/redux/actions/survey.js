@@ -1,5 +1,5 @@
 import { getData, postData, putData } from "../../utils/fetchData";
-import { surveyConstants, appConstants } from "../constants";
+import { surveyConstants, appConstants, authConstants } from "../constants";
 
 export const getAllSurveys = () => async (dispatch) => {
   try {
@@ -84,4 +84,40 @@ export const editSurvey = (id, data, token, navigate) => async (dispatch) => {
   } catch (err) {
     throw new Error(err.response.data.message);
   }
+};
+
+export const vote = (survey_id, item_id, token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: appConstants.LOADING,
+      payload: true,
+    });
+
+    const res = await postData(
+      `/api/survey/vote?_id=${survey_id}&item_id=${item_id}`,
+      null,
+      token
+    );
+
+    dispatch(getOneSurvey(res.data.survey._id));
+
+    dispatch({
+      type: authConstants.AUTH,
+      payload: res.data,
+    });
+
+    dispatch({
+      type: appConstants.LOADING,
+      payload: false,
+    });
+  } catch (err) {
+    throw new Error(err.response.data.message);
+  }
+};
+
+export const selectItem = (item_id) => (dispatch) => {
+  dispatch({
+    type: surveyConstants.SELECTED_ITEM,
+    payload: item_id,
+  });
 };
