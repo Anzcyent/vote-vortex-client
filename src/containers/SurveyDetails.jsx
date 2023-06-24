@@ -66,7 +66,7 @@ const SurveyDetails = () => {
             <small className="text-xs text-aqua">
               {moment(survey.createdAt).fromNow()}
             </small>
-            <small className="text-xs font-bold text-green my-1">
+            <small className="text-xs font-bold text-green my-1 cursor-pointer hover:opacity-60" onClick={() => navigate(`/profile/${survey.owner._id}`)}>
               by {survey.owner.username}
             </small>
           </div>

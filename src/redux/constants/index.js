@@ -5,11 +5,15 @@ export const appConstants = {
 
 export const authConstants = {
   AUTH: "AUTH",
-  UPDATE: "UPDATE"
+  UPDATE: "UPDATE",
 };
 
 export const surveyConstants = {
   GET_ALL_SURVEYS: "GET_ALL_SURVEYS",
   GET_ONE_SURVEY: "GET_ONE_SURVEY",
   SELECTED_ITEM: "SELECTED_ITEM",
+};
+
+export const userConstants = {
+  GET_USER: "GET_USER",
 };
