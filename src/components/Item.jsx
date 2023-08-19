@@ -21,7 +21,7 @@ const Item = ({ _id, content, voters, percentage }) => {
         <span>{content}</span>
         {userVotedToThisSurvey && (
           <span className="text-aqua font-bold">
-            {percentage + "%"}{" "}
+            {Math.round(percentage) + "%"}{" "}
             <small className="text-white">({voters.length + " vote"})</small>{" "}
           </span>
         )}
